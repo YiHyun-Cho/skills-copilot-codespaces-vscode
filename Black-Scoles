@@ -1,0 +1,50 @@
+% Parameters
+S = 50;          % Current stock price
+K = 55;          % Strike price
+T = 0.5;         % Time to expiration (in years)
+r = 0.01;        % Risk-free interest rate (1%)
+
+% Volatility = 20%
+sigma_1 = 0.20;  % Initial volatility (20%)
+
+% Calculate d1 and d2 for sigma = 20%
+d1_1 = (log(S / K) + (r + 0.5 * sigma_1^2) * T) / (sigma_1 * sqrt(T));
+d2_1 = d1_1 - sigma_1 * sqrt(T);
+
+% Calculate N(d1) and N(d2) for sigma = 20%
+N_d1_1 = normcdf(d1_1);
+N_d2_1 = normcdf(d2_1);
+
+% Calculate call option price for sigma = 20%
+C_1 = S * N_d1_1 - K * exp(-r * T) * N_d2_1;
+
+% Calculate covered call value for sigma = 20%
+covered_call_1 = S - C_1;
+
+% Display results for sigma = 20%
+fprintf('Results for Volatility = 20%%:\n');
+fprintf('Call Option Price (C): $%.2f\n', C_1);
+fprintf('Covered Call Value: $%.2f\n\n', covered_call_1);
+
+% Volatility = 40%
+sigma_2 = 0.40;  % Increased volatility (40%)
+
+% Calculate d1 and d2 for sigma = 40%
+d1_2 = (log(S / K) + (r + 0.5 * sigma_2^2) * T) / (sigma_2 * sqrt(T));
+d2_2 = d1_2 - sigma_2 * sqrt(T);
+
+% Calculate N(d1) and N(d2) for sigma = 40%
+N_d1_2 = normcdf(d1_2);
+N_d2_2 = normcdf(d2_2);
+
+% Calculate call option price for sigma = 40%
+C_2 = S * N_d1_2 - K * exp(-r * T) * N_d2_2;
+
+% Calculate covered call value for sigma = 40%
+covered_call_2 = S - C_2;
+
+% Display results for sigma = 40%
+fprintf('Results for Volatility = 40%%:\n');
+fprintf('Call Option Price (C): $%.2f\n', C_2);
+fprintf('Covered Call Value: $%.2f\n', covered_call_2);
+
